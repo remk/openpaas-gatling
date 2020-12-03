@@ -22,7 +22,7 @@ object InboxScenari {
       .exec(retrieveAuthenticationToken)
       .exec(getSocketId)
       .exec(registerSocketNamespaces)
-      .exec(openWsConnection())
+//      .exec(openWsConnection())
       .exec(loadOpeningEventTemplates)
       .exec(generateJwtTokenWithAuth)
       .exec(getVacationResponse)
@@ -36,7 +36,7 @@ object InboxScenari {
       .repeat(10)(exec(AvatarsSteps.search(UsernameSessionParam, withRandomDisplayName=true)))
       .pause(humanActionDelay() second)
       .group("send email")(sendEmailSteps)
-      .exec(closeWsConnection)
+//      .exec(closeWsConnection)
       .pause(humanActionDelay() second)
       .exec(logout)
 
@@ -57,7 +57,7 @@ object InboxScenari {
     .exec(retrieveAuthenticationToken)
     .exec(getSocketId)
     .exec(registerSocketNamespaces)
-    .exec(openWsConnection())
+//    .exec(openWsConnection())
     .exec(loadOpeningEventTemplates)
     .exec(generateJwtTokenWithAuth)
     .exec(getVacationResponse)
@@ -69,8 +69,9 @@ object InboxScenari {
     .pause(humanActionDelay() second)
     .exec(getMessageList))
 
-  def userLogout() = group("logout")(exec(closeWsConnection)
-    .pause(humanActionDelay() second)
+  def userLogout() = group("logout")(
+  //  exec(closeWsConnection).
+    pause(humanActionDelay() second)
     .exec(logout))
 
   def idle() = group("idle")(
